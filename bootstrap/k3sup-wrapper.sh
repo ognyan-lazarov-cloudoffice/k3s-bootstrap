@@ -3,8 +3,9 @@ set -e
 
 # Configuration
 K3S_VERSION="v1.30.4+k3s1"
-SERVER_IP="192.168.65.8"
-# AGENT_IPS="192.168.1.101 192.168.1.102"
+SERVER_IP="192.168.65.6"
+# AGENT_IPS="192.168.65.7"
+# AGENT_IPS="IP1 IP2 IP3"
 
 # Install k3sup if not present
 if ! command -v k3sup &> /dev/null; then
