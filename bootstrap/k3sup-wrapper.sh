@@ -7,12 +7,12 @@ SERVER_IP="192.168.65.6"
 AGENT_IPS="192.168.65.7"
 # AGENT_IPS="IP1 IP2 IP3"
 USER=sentian
-CONFIG_FILE="/path/to/config.yaml"
+CONFIG_FILE="bootstrap/config.yaml"
 
 # Install k3sup if not present
 if ! command -v k3sup &> /dev/null; then
-    curl -sLS https://get.k3sup.dev | sh
-    sudo install k3sup /usr/local/bin/
+  curl -sLS https://get.k3sup.dev | sh
+  sudo install k3sup /usr/local/bin/
 fi
 
 # Install K3s server
