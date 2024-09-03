@@ -26,7 +26,7 @@ data:
     # Add host keys and copy public key to all nodes
     for IP in $SERVER_IP $AGENT_IPS; do
       add_host_key $IP
-      sudo scp -o StrictHostKeyChecking=no /root/.ssh/id_ed25519_k3sup.pub ${SSH_USER}@${IP}:/tmp/
+      scp -o StrictHostKeyChecking=no /root/.ssh/id_ed25519_k3sup.pub ${SSH_USER}@${IP}:/tmp/
       ssh ${SSH_USER}@${IP} "mkdir -p ~/.ssh && cat /tmp/id_ed25519_k3sup.pub >> ~/.ssh/authorized_keys && rm /tmp/id_ed25519_k3sup.pub"
     done
 
