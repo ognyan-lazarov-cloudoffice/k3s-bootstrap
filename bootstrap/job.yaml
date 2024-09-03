@@ -7,9 +7,9 @@ spec:
     spec:
       containers:
       - name: k3sup
-        image: alpine:latest
+        image: ubuntu:latest
         command: ["/bin/sh"]
-        args: ["-c", "apk add --no-cache bash curl && bash /scripts/k3sup-wrapper.sh"]
+        args: ["-c", "apt-get update && apt-get install -y curl && bash /scripts/k3sup-wrapper.sh"]
         volumeMounts:
         - name: script
           mountPath: /scripts
