@@ -8,14 +8,23 @@ spec:
       containers:
       - name: k3sup
         image: ubuntu:latest
-        command: ["/bin/sh"]
+        command: ["/bin/bash"]
         args: ["-c", "apt-get update && apt-get install -y curl openssh-client && bash -x /scripts/k3sup-wrapper.sh"]
         volumeMounts:
         - name: script
           mountPath: /scripts
+        - name: ssh-key
+          mountPath: "/root/.ssh"
+          readOnly: true
+        securityContext:
+          runAsUser: 0
       restartPolicy: OnFailure
       volumes:
       - name: script
         configMap:
           name: k3sup-wrapper
           defaultMode: 0744
+      - name: ssh-key
+        secret:
+          secretName: ssh-key-secret
+          defaultMode: 0600

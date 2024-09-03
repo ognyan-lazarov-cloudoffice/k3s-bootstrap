@@ -6,32 +6,24 @@ data:
   k3sup-wrapper.sh: |
     #!/bin/bash
     set -ex
+
+    # Configuration
     K3S_VERSION="v1.30.4+k3s1"
     SERVER_IP="192.168.65.6"
     AGENT_IPS="192.168.65.7"
     SSH_USER=sentian
+    SSH_KEY="/root/.ssh/id_ed25519"
     CONFIG_FILE="config.yaml"
+
+    # Install k3sup
     if ! command -v k3sup &> /dev/null; then
       curl -sLS https://get.k3sup.dev | sh
     fi
-    mkdir -p /root/.ssh
-    ssh-keygen -t ed25519 -f /root/.ssh/id_ed25519_k3sup -N ""
-
-    # Function to add host key
-    add_host_key() {
-      local IP=$1
-      ssh-keyscan -H $IP >> /root/.ssh/known_hosts
-    }
-
-    # Add host keys and copy public key to all nodes
-    for IP in $SERVER_IP $AGENT_IPS; do
-      add_host_key $IP
-      scp -o StrictHostKeyChecking=no /root/.ssh/id_ed25519_k3sup.pub ${SSH_USER}@${IP}:/tmp/
-      ssh ${SSH_USER}@${IP} "mkdir -p ~/.ssh && cat /tmp/id_ed25519_k3sup.pub >> ~/.ssh/authorized_keys && rm /tmp/id_ed25519_k3sup.pub"
-    done
 
     # Install K3s server
     k3sup install --ip $SERVER_IP --k3s-version $K3S_VERSION --k3s-extra-args="--config ${CONFIG_FILE}" --ssh-key $HOME/.ssh/id_ed25519 --user $SSH_USER
+    
+    # Install K3s agents
     for AGENT_IP in $AGENT_IPS; do
       k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --k3s-version $K3S_VERSION --ssh-key $HOME/.ssh/id_ed25519 --user $SSH_USER
     done
