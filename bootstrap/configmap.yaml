@@ -13,19 +13,9 @@ data:
     CONFIG_FILE="bootstrap/config.yaml"
     if ! command -v k3sup &> /dev/null; then
       curl -sLS https://get.k3sup.dev | sh
-      sudo install k3sup /usr/local/bin/
+      install k3sup /usr/local/bin/
     fi
-    k3sup install \
-      --ip $SERVER_IP \
-      --k3s-version $K3S_VERSION \
-      --k3s-extra-args="--config ${CONFIG_FILE}" \
-      --ssh-key $HOME/.ssh/id_ed25519 \
-      --user $USER
+    k3sup install --ip $SERVER_IP --k3s-version $K3S_VERSION --k3s-extra-args="--config ${CONFIG_FILE}" --ssh-key $HOME/.ssh/id_ed25519 --user $USER
     for AGENT_IP in $AGENT_IPS; do
-      k3sup join \
-        --ip $AGENT_IP \
-        --server-ip $SERVER_IP \
-        --k3s-version $K3S_VERSION \
-        --ssh-key $HOME/.ssh/id_ed25519 \
-        --user $USER
+      k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --k3s-version $K3S_VERSION --ssh-key $HOME/.ssh/id_ed25519 --user $USER
     done
