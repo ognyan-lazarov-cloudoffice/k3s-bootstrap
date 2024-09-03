@@ -13,7 +13,8 @@ data:
     CONFIG_FILE="config.yaml"
     if ! command -v k3sup &> /dev/null; then
       curl -sLS https://get.k3sup.dev | sh
-      install k3sup /usr/local/bin/
+      chmod +x k3sup
+      mv k3sup /usr/local/bin/
     fi
     k3sup install --ip $SERVER_IP --k3s-version $K3S_VERSION --k3s-extra-args="--config ${CONFIG_FILE}" --ssh-key $HOME/.ssh/id_ed25519 --user $USER
     for AGENT_IP in $AGENT_IPS; do
