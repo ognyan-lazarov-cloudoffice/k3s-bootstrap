@@ -6,7 +6,7 @@ K3S_VERSION="v1.30.4+k3s1"
 SERVER_IP="192.168.65.6"
 AGENT_IPS="192.168.65.7"
 # AGENT_IPS="IP1 IP2 IP3"
-USER=sentian
+SSH_USER=sentian
 CONFIG_FILE="bootstrap/config.yaml"
 
 # Install k3sup if not present
