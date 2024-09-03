@@ -14,11 +14,6 @@ data:
     if ! command -v k3sup &> /dev/null; then
       curl -sLS https://get.k3sup.dev | sh
       which k3sup
-      if [ $? -ne 0 ]; then
-        find / -name k3sup 2>/dev/null
-      fi
-      chmod +x ./k3sup
-      mv ./k3sup /usr/local/bin/
       k3sup version
     fi
     k3sup install --ip $SERVER_IP --k3s-version $K3S_VERSION --k3s-extra-args="--config ${CONFIG_FILE}" --ssh-key $HOME/.ssh/id_ed25519 --user $USER
