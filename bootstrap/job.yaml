@@ -9,7 +9,7 @@ spec:
       - name: k3sup
         image: ubuntu:latest
         command: ["/bin/sh"]
-        args: ["-c", "apt-get update && apt-get install -y curl findutils && bash -x /scripts/k3sup-wrapper.sh"]
+        args: ["-c", "apt-get update && apt-get install -y curl openssh-client && bash -x /scripts/k3sup-wrapper.sh"]
         volumeMounts:
         - name: script
           mountPath: /scripts
