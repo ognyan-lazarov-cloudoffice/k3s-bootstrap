@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: k3sup-wrapper
+  namespace: argocd
 data:
   k3sup-wrapper.sh: |
     #!/bin/bash
