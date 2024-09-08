@@ -17,7 +17,7 @@ spec:
           apt-get update && apt-get install -y curl
 
           # Configuration
-          K3S_VERSION="v1.30.4+k3s1"
+          K3S_VERSION="v1.31.0+k3s1"
           SERVER_IP="192.168.65.9"
           AGENT_IPS="192.168.65.10"
           SSH_USER=sentian
