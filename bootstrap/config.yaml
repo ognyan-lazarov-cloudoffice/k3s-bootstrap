@@ -1,8 +1,8 @@
 # Disable components you don't need
 disable:
-  # - traefik
-  # - servicelb
-  - local-storage
+  - traefik
+  - servicelb
+  # - local-storage
   
 # Configure the cluster-cidr and service-cidr if needed
 cluster-cidr: 10.42.0.0/16
