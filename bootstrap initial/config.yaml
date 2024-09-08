@@ -1,0 +1,51 @@
+# Disable components you don't need
+disable:
+  # - traefik
+  # - servicelb
+  - local-storage
+  
+# Configure the cluster-cidr and service-cidr if needed
+cluster-cidr: 10.42.0.0/16
+service-cidr: 10.43.0.0/16
+  
+# # Set the default storage class (if using a specific storage provider)
+# default-storage-class: "your-storage-class"
+  
+# Configure etcd snapshot settings
+etcd-snapshot-schedule-cron: "0 */12 * * *"
+etcd-snapshot-retention: 5
+  
+# # Set resource reservations for system services
+# kubelet-arg:
+#   - "system-reserved=cpu=500m,memory=500Mi"
+#   - "kube-reserved=cpu=500m,memory=500Mi"
+  
+# Configure networking
+flannel-backend: "vxlan"
+  
+# Set up node labels (useful for node affinity)
+node-label:
+  - "environment=test"
+  # - "node-role.kubernetes.io/worker=true"
+  
+# Configure logging
+log: "/var/log/k3s.log"
+log-level: "info"
+  
+# Set up secrets encryption
+secrets-encryption: true
+  
+# # Configure TLS settings
+# tls-san:
+#   - "your-domain.com"
+#   - "alternative-domain.com"
+  
+# Set up data directory
+data-dir: "/var/lib/rancher/k3s"
+  
+# Configure API server settings
+kube-apiserver-arg:
+  - "feature-gates=EphemeralContainers=true"
+  
+# Set up container runtime (if not using default)
+container-runtime-endpoint: "unix:///run/containerd/containerd.sock"
