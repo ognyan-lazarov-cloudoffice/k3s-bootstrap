@@ -14,7 +14,7 @@ spec:
         - -c
         - |
           set -ex
-          apt-get update && apt-get install -y curl
+          apt install -y curl
 
           # Configuration
           K3S_VERSION="v1.31.0+k3s1"
