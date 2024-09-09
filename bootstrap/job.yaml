@@ -8,13 +8,13 @@ spec:
     spec:
       containers:
       - name: k3sup
-        image: ubuntu:noble
+        image: debian:latest
         command: ["/bin/bash"]
         args:
         - -c
         - |
           set -ex
-          apt install -y curl
+          apt-get update && apt-get install -y curl
 
           # Configuration
           K3S_VERSION="v1.31.0+k3s1"
