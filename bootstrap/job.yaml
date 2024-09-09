@@ -30,11 +30,11 @@ spec:
           fi
 
           # Install K3s server
-          k3sup install --ip $SERVER_IP --k3s-version $K3S_VERSION --k3s-extra-args="--config ${CONFIG_FILE}" --ssh-key $HOME/.ssh/id_ed25519 --user $SSH_USER
+          k3sup install --ip $SERVER_IP --k3s-version $K3S_VERSION --k3s-extra-args="--config ${CONFIG_FILE}" --ssh-key $SSH_KEY --user $SSH_USER
     
           # Install K3s agents
           for AGENT_IP in $AGENT_IPS; do
-            k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --k3s-version $K3S_VERSION --ssh-key $HOME/.ssh/id_ed25519 --user $SSH_USER
+            k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --k3s-version $K3S_VERSION --ssh-key $SSH_KEY --user $SSH_USER
           done
         volumeMounts:
         - name: ssh-key
