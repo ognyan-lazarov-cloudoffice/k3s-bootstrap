@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: k3sup
-        image: ubuntu:latest
+        image: ubuntu:noble
         command: ["/bin/bash"]
         args:
         - -c
