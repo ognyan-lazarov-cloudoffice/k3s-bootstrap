@@ -9,7 +9,7 @@ spec:
       containers:
       - name: k3sup
         image: alpine:latest
-        command: ["/bin/bash"]
+        command: ["/bin/sh"]
         args:
         - -c
         - |
